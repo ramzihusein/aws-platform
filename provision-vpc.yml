@@ -1,0 +1,69 @@
+---
+- name: Play to create #C2 resources and fianlly a RHEL8 instance.
+  hosts: localhost
+  vars:
+    aws_region: us-east-2
+    aws_vpc: mkb-platform
+    aws_subnet: 10.10.0.0/16
+    aws_securitygroup: mkb-platform-sg
+
+  tasks:
+    - name: Create the VPC 
+      ec2_vpc_net:
+        name: "{{ aws_vpc }}"
+        cidr_block: "{{ aws_subnet }}"
+        region: "{{ aws_region }}"
+        tenancy: default
+      register: vpc_vars
+
+    - name: Create an internet gateway and associate to the VPC
+      ec2_vpc_igw:
+        vpc_id: "{{ vpc_vars.vpc.id }}"
+        region: "{{ aws_region }}"
+        state: present
+      register: igw_vars
+
+    - name: Create a sunbet in the VPC
+      ec2_vpc_subnet:
+        state: present
+        vpc_id: "{{ vpc_vars.vpc.id }}"
+        cidr: "{{ aws_subnet }}"
+        region: "{{ aws_region }}"
+      register: subnet_vars
+
+    - name: Set up public subnet route table
+      ec2_vpc_route_table:
+        vpc_id: "{{ vpc_vars.vpc.id }}"
+        region: "{{ aws_region }}"
+        subnets:
+          - "{{ aws_subnet.subnet.id }}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{ igw_vars.gateway_id }}"
+
+    - name: Create AWS security group
+      ec2_group:
+        name: "{{ aws_securitygroup }}"
+        description: aws security group for mkb platform demos
+        vpc_id: "{{ vpc_vars.vpc.id }}"
+        region: "{{ aws_region }}"
+        rules:
+          - proto: tcp
+            ports:
+              -22
+            cidr_ip: 0.0.0.0/0
+            rules_desc: allows all connections on port 22
+
+    - name: provision RHEL 8 EC2 instance
+      ec2:
+        region: "{{ aws_region }}"
+        key_name: "{{ aws_ssh_key }}"
+        instance_type: t2.medium
+        image: ami-00979d0952e1ea3a
+        wait: yes
+        group: "{{ aws_securitygroup }}"
+        count: 1
+        vpc_subnet_id: "{{ aws_subnet.subnet.id }}"
+        assign_public_ip: yes
+        
+

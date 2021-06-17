@@ -1,0 +1,14 @@
+- name: Provision instance in AWS
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  collections: 
+    - amazon.aws
+
+  tasks:
+  - name: Provision instance
+    amazon.aws.ec2_ami:
+      name: {{ name }}
+      instance_id: {{ instance_id }}
+      

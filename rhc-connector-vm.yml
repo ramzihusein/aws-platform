@@ -1,0 +1,27 @@
+---
+- name: Play to create #C2 resources and fianlly a RHEL8 instance.
+  hosts: localhost
+  vars:
+    aws_region: us-east-2
+    aws_vpc: mkb-platform
+    aws_subnet: 10.10.0.0/16
+    aws_securitygroup: mkb-platform-sg
+    aws_ssh_key: mkb-platform
+    
+  tasks:
+    - name: provision RHEL 8 EC2 instance
+      ec2:
+        region: "{{ aws_region }}"
+        key_name: "{{ aws_ssh_key }}"
+        instance_type: m4.large
+        image: ami-074bab065c112399f #rhel 8.4 x86_64
+        wait: yes
+        group: "{{ aws_securitygroup }}"
+        count: 1
+        #vpc_subnet_id: "{{ aws_subnet.subnet.id }}"
+        assign_public_ip: yes
+      register: new_instance_facts
+
+    - name:
+      debug:
+      message: 
