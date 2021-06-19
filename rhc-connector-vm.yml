@@ -22,6 +22,6 @@
         assign_public_ip: yes
       register: new_instance_facts
 
-    - name:
-      debug:
-      message: 
+#    - name: Print new EC2 system
+#      debug:
+#      message: 
