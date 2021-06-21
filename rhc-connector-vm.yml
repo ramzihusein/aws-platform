@@ -1,6 +1,6 @@
 ---
-- name: Play to create #C2 resources and fianlly a RHEL8 instance.
-  hosts: localhost
+- name: Play to create RHEL EC2 Instance
+  hosts: all
   gather_facts: false
   vars:
     aws_region: us-east-2
