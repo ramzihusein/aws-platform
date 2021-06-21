@@ -1,13 +1,7 @@
 ---
 - name: Configure AWS EC2 Image to communicate with Insights via RHC
   hosts: all
-  vars:
-    aws_region: us-east-2
-    aws_vpc: mkb-platform
-    aws_subnet: 10.10.0.0/16
-    aws_securitygroup: mkb-platform-sg
-    aws_ssh_key: mkb-platform
-    
+  
   tasks:
   - name: Disable rhui repositories
     ansible.builtin.command: yum-config-manager --disable *rhui*
