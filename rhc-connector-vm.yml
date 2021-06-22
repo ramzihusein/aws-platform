@@ -1,11 +1,11 @@
 ---
 - name: Play to create RHEL EC2 Instance
-  hosts: all
+  hosts: localhost
   gather_facts: false
   vars:
     aws_region: us-east-2
     aws_vpc: mkb-platform
-    aws_subnet: 10.10.0.0/16
+    aws_subnet: mkb-platform-subnet #172.31.0.0/16
     aws_securitygroup: mkb-platform-sg
     aws_ssh_key: mkb-platform
     
