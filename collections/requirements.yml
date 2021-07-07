@@ -1,0 +1,4 @@
+collections:
+  - name: insights
+  - name: community.general
+  - name: ansible.builtin

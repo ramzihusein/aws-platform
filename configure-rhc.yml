@@ -1,7 +1,7 @@
 ---
 - name: Configure AWS EC2 Image to communicate with Insights via RHC
   hosts: all
-  
+  #test
   tasks:
   - name: Disable rhui repositories
     ansible.builtin.command: yum-config-manager --disable *rhui*
