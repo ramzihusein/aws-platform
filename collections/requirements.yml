@@ -1,4 +1,4 @@
 collections:
-  - name: insights
+  - name: redhat.insights
 #  - name: community.general
 #  - name: ansible.builtin
