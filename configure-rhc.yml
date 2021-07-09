@@ -4,7 +4,7 @@
   #test
   tasks:
   - name: Disable rhui repositories
-    ansible.builtin.command: yum-config-manager --disable *rhui*
+    ansible.builtin.shell: yum-config-manager --disable *rhui*
 
 #  - name: register system and attach smart management subscription
 #    community.general.redhat_subscription:
@@ -15,7 +15,7 @@
       # consider using activation key parameter instead (see examples in docs)
 
   - name: configure system to use CDN by default (preven reset to rhui on reboot)
-    ansible.builtin.command: "subscription-manager --rhsm.manage_repos=1"
+    ansible.builtin.shell: "subscription-manager --rhsm.manage_repos=1"
 
   - name: Add Ansible Engine repositories
     ansible.builtin.yum_repository: 
