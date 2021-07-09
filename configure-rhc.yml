@@ -14,8 +14,8 @@
 #      pool_ids: 8a85f9a178a823b20178ccaf437d272c
       # consider using activation key parameter instead (see examples in docs)
 
-  - name: configure system to use CDN by default (preven reset to rhui on reboot)
-    ansible.builtin.shell: "subscription-manager --rhsm.manage_repos=1"
+ # - name: configure system to use CDN by default (preven reset to rhui on reboot)
+ #   ansible.builtin.shell: "subscription-manager --rhsm.manage_repos=1"
 
   - name: Add Ansible Engine repositories
     ansible.builtin.yum_repository: 
