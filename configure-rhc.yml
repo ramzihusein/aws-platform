@@ -22,6 +22,8 @@
       name: ansible-2.9-for-rhel-8-x86_64-rpms
       baseurl: https://cdn.redhat.com/content/dist/layered/rhel8/x86_64/ansible/2.9/os
       description: "Red Hat Ansible Engine 2.9 for RHEL 8 x86_64 (RPMs)"
+      gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+      gpgcheck: yes
       enabled: yes
 
   - name: install ansible Engine
