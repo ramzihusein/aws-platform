@@ -25,11 +25,11 @@
       enabled: yes
 
   - name: install ansible Engine
-    yum:
+    ansible.builtin.dnf:
       name: ansible
       state: present
 
   - name: install rhc playbook
-    yum:
+    ansible.builtin.dnf:
       name: rhc-worker-playbook
       state: present
