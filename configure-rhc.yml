@@ -19,7 +19,7 @@
 
   - name: Enable Ansible 2.9 rhsm repository in redehat.repo file
     community.general.rhsm_repository:
-      name: ansible-2.9-for-rhel-8-x86_64-source-rpms
+      name: ansible-2.9-for-rhel-8-x86_64-rpms
       state: enabled
 
 #  - name: Add Ansible Engine repositories
