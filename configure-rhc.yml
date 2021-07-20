@@ -32,11 +32,11 @@
 #      enabled: yes
 
   - name: install ansible Engine
-    ansible.builtin.dnf:
+    ansible.builtin.yum:
       name: ansible
       state: present
 
   - name: install rhc playbook
-    ansible.builtin.dnf:
+    ansible.builtin.yum:
       name: rhc-worker-playbook
       state: present
