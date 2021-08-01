@@ -46,6 +46,11 @@
       name: '*'
       state: latest
 
+  - name: isntall red hat connector tool
+    ansible.builtin.yum:
+      name: rhc
+      state: present
+
   - name: establish Red Hat Connector
     ansible.builtin.command: rhc connect
 
