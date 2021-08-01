@@ -47,5 +47,5 @@
       state: latest
 
   - name: register insights client
-    ansible.redhat.insights.insights_register:
+    insights_register:
       state: present
