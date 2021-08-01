@@ -40,3 +40,12 @@
     ansible.builtin.yum:
       name: rhc-worker-playbook
       state: present
+
+  - name: update to current release 
+    ansible.builtin.yum:
+      name: '*'
+      state: latest
+
+  - name: register insights client
+    ansible.redhat.insights.insights_register:
+      state: present
