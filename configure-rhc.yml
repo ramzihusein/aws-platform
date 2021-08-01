@@ -52,6 +52,7 @@
       state: present
 
   - name: establish Red Hat Connector
-    ansible.builtin.command: rhc connect
+    ansible.builtin.command: rhc connect -u mbredeme -p Toonces1!
+
 
 
