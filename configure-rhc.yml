@@ -15,7 +15,7 @@
       # consider using activation key parameter instead (see examples in docs)
 
   - name: enable subscription manager
-    ansible.builtin.shell: subscription-manager --rhsm.manage_repos=1
+    ansible.builtin.shell: subscription-manager config --rhsm.manage_repos=1
 #  - name: configure system to use CDN by default (preven reset to rhui on reboot)
 #    ansible.builtin.shell: "subscription-manager --rhsm.manage_repos=1"
 
