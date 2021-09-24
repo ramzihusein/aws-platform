@@ -57,5 +57,8 @@
   - name: establish Red Hat Connector
     ansible.builtin.command: rhc connect -u {{ portal_username }} -p {{ portal_password }}
 
+  - name: update insights data
+    community.general.redhat_subscription: insights-client
+
 
 
