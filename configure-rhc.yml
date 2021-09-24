@@ -11,6 +11,7 @@
       state: present
       username: "{{ portal_username }}"
       password: "{{ portal_password }}"
+      force_register: yes
       pool_ids: 8a85f9a178a823b20178ccaf437d272c
       # consider using activation key parameter instead (see examples in docs)
 
