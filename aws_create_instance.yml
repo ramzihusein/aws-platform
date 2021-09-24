@@ -10,7 +10,7 @@
     vpc_id: vpc-094c7a2bae802020b
     ssh_key_name: mkb-platform
     region: us-east-2
-    subnet_id: subnet-05cdfa73ae7fdd656
+    subnet_id: subnet-fdbe8187
 
 
   collections: 
