@@ -34,16 +34,21 @@
     debug:
       var: ec2_instance_facts.instances[0].public_dns_name
 
-  - name: refresh aws inventory
-    ansible.tower.tower_inventory_source_update:
-      inventory: mkb-platform-aws-inventory
-      inventory_source: mkb-platform-aws-source
-      tower_username: "{{ tower_username }}"
-      tower_password: "{{ tower_password }}"
-      wait: yes
+  - name: 
+    ansible.builtin.add_host:
+      name: "{{ ec2_instance_facts.instances[0].public_dns_name }}"
+      groups: NewInsightInstance
 
-  - name: create NewInsightIntance group and assign to new hosts
-    ansible.tower.tower_group:
-      hosts: "{{ ec2_instance_facts.instance[0].public_dns_name }}"
-      inventory: mkb-platform-aws-inventory
-      name: NewInsightInstance
+#  - name: refresh aws inventory
+#    ansible.tower.tower_inventory_source_update:
+#      inventory: mkb-platform-aws-inventory
+#      inventory_source: mkb-platform-aws-source
+#      tower_username: "{{ tower_username }}"
+#      tower_password: "{{ tower_password }}"
+#      wait: yes
+
+  #- name: create NewInsightIntance group and assign to new hosts
+  #  ansible.tower.tower_group:
+  #    hosts: "{{ ec2_instance_facts.instance[0].public_dns_name }}"
+  #    inventory: mkb-platform-aws-inventory
+  #    name: NewInsightInstance
