@@ -43,10 +43,10 @@
       name: rhc-worker-playbook
       state: present
 
-  - name: update to current release 
-    ansible.builtin.yum:
-      name: '*'
-      state: latest
+#  - name: update to current release 
+#    ansible.builtin.yum:
+#      name: '*'
+#      state: latest
 
   - name: isntall red hat connector tool
     ansible.builtin.yum:
