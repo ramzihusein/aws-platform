@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: false
   vars:
-    security_group_id: sg-0252de2d3594fc0e0
+    security_group: mkb-platform-sg
     ami_id: ami-09d6d9540936a68de
     instance_size: m4.xlarge
     instance_tags: {"Name":"mkb-platform-ec2-instance"}
@@ -21,7 +21,7 @@
     amazon.aws.ec2:
       region: "{{ region }}"
       key_name: "{{ ssh_key_name }}"
-      group_id: "{{ security_group_id }}"
+      group: "{{ security_group }}"
       instance_type: "{{ instance_size }}"
       instance_tags: "{{ instance_tags }}"
       image: "{{ ami_id }}"
