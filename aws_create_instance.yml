@@ -33,3 +33,15 @@
   - name: show ec2_facts
     debug:
       var: ec2_instance_facts.instances[0].public_dns_name
+
+  - name: refresh aws inventory
+    ansible.tower.tower_inventory_source_update:
+      inventory: mkb-platform-aws-inventory
+      inventory_source: mkb-platform-aws-source
+      wait: yes
+
+  - name: create NewInsightIntance group and assign to new hosts
+    ansible.tower.tower_group:
+      hosts: "{{ ec2_instance_facts.instance[0].public_dns_name }}"
+      inventory: mkb-platform-aws-inventory
+      name: NewInsightInstance
