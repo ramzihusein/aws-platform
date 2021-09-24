@@ -57,6 +57,10 @@
   - name: establish Red Hat Connector
     ansible.builtin.command: rhc connect -u {{ portal_username }} -p {{ portal_password }}
 
+  - name: give insights time to finish setup after running RHC
+    ansible.builtin.wait_for: 
+      timeout: 60
+      
   - name: update insights data
     ansible.builtin.command: insights-client
 
