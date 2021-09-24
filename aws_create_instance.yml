@@ -38,6 +38,8 @@
     ansible.tower.tower_inventory_source_update:
       inventory: mkb-platform-aws-inventory
       inventory_source: mkb-platform-aws-source
+      tower_username: {{ tower_username }}
+      tower_password: {{ tower_password }}
       wait: yes
 
   - name: create NewInsightIntance group and assign to new hosts
