@@ -1,7 +1,6 @@
 ---
 - name: Provision instance in AWS
   hosts: localhost
-  connection: local
   gather_facts: false
   vars:
     security_group_id: sg-0252de2d3594fc0e0
