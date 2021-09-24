@@ -9,8 +9,8 @@
   - name: register system and attach smart management subscription
     community.general.redhat_subscription:
       state: present
-      username: mbredeme
-      password: Toonces1!
+      username: "{{ portal_username }}"
+      password: "{{ portal_password }}"
       pool_ids: 8a85f9a178a823b20178ccaf437d272c
       # consider using activation key parameter instead (see examples in docs)
 
@@ -54,7 +54,7 @@
       state: present
 
   - name: establish Red Hat Connector
-    ansible.builtin.command: rhc connect -u mbredeme -p Toonces1!
+    ansible.builtin.command: rhc connect -u {{ portal_username }} -p {{ portal_password }}
 
 
 
