@@ -38,8 +38,8 @@
     ansible.tower.tower_token:
       scope: "write"
       state: present
-      tower_username: "{{ tower_username }}"
-      tower_password: "{{ tower_password }}"
+      tower_username: admin
+      tower_password: R3dH4t!234567
     register: temp_token
 
   - name: print token
