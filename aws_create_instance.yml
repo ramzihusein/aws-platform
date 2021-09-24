@@ -7,10 +7,9 @@
     ami_id: ami-09d6d9540936a68de
     instance_size: m4.xlarge
     instance_tags: {"Name":"mkb-platform-ec2-instance"}
-    region: 
-    vpc_id: vpc-03ff2668
+    vpc_id: vpc-094c7a2bae802020b
     ssh_key_name: mkb-platform
-    aws_region: us-east-2
+    region: us-east-2
 
 
   collections: 
@@ -19,7 +18,7 @@
   tasks:
   - name: Provision instance
     amazon.aws.ec2:
-      region: "{{ aws_region }}"
+      region: "{{ region }}"
       key_name: "{{ ssh_key_name }}"
       group_id: "{{ security_group_id }}"
       instance_type: "{{ instance_size }}"
