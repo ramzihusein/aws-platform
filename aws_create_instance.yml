@@ -10,6 +10,7 @@
     vpc_id: vpc-094c7a2bae802020b
     ssh_key_name: mkb-platform
     region: us-east-2
+    subnet_id: subnet-05cdfa73ae7fdd656
 
 
   collections: 
@@ -25,5 +26,5 @@
       instance_tags: "{{ instance_tags }}"
       image: "{{ ami_id }}"
       wait: yes
-      vpc_subnet_id: "{{ vpc_id }}"
+      vpc_subnet_id: "{{ subnet_id }}"
       assign_public_ip: no
