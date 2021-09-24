@@ -34,18 +34,6 @@
     debug:
       var: ec2_instance_facts.instances[0].public_dns_name
 
-  - name: create temp auth token
-    ansible.tower.tower_token:
-      scope: "write"
-      state: present
-      tower_username: admin
-      tower_password: R3dH4t!234567
-    register: temp_token
-
-  - name: print token
-    debug:
-      var: temp_token
-
   - name: refresh aws inventory
     ansible.tower.tower_inventory_source_update:
       inventory: mkb-platform-aws-inventory
