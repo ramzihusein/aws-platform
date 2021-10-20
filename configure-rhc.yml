@@ -3,6 +3,20 @@
   hosts: all
 
   tasks:
+
+  - name: start cockpit socket
+    ansible.builtin.service: 
+      name: cockpit.socket
+      enabled: yes
+      state: started
+
+  - name: add mbredeme username
+    ansible.builtin.user:
+      name: "{{ portal_username }}"
+      groups: wheel
+      append: yes
+      password: "{{ portal_password }}"
+
   - name: Disable rhui repositories
     ansible.builtin.shell: yum-config-manager --disable *rhui*
 
@@ -69,16 +83,5 @@
       name: cockpit
       state: latest
 
-  - name: start cockpit socket
-    ansible.builtin.service: 
-      name: cockpit.socket
-      enabled: yes
-      state: started
 
-  - name: add mbredeme username
-    ansible.builtin.user:
-      name: "{{ portal_username }}"
-      groups: wheel
-      append: yes
-      update_password: "{{ portal_password }}"
 
