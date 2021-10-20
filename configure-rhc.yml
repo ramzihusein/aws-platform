@@ -25,6 +25,17 @@
       name: ansible-2.9-for-rhel-8-x86_64-rpms
       state: enabled
 
+  - name: install webconsole (cockpit)
+    ansible.builtin.yum:
+      name: cockpit
+      state: latest
+
+  - name: start cockpit socket
+    ansible.builtin.service: 
+      name: cockpit.socket
+      enabled: yes
+      state: started
+
 #  - name: Add Ansible Engine repositories
 #    ansible.builtin.yum_repository: 
 #      name: ansible-2.9-for-rhel-8-x86_64-rpms
