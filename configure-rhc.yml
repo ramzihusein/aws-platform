@@ -65,7 +65,7 @@
   - name: update insights data
     ansible.builtin.command: insights-client
 
-  - name: install webconsole (cockpit)
+  - name: install webconsole aka cockpit
     ansible.builtin.yum:
       name: cockpit
       state: latest
@@ -81,5 +81,5 @@
       name: "{{ portal_username }}"
       groups: wheel
       append: yes
-      password: "{{ portal_password }}"
+      password: "{{ portal_password | password_hash('sha512') }}"
       update_password: always
