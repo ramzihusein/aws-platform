@@ -48,6 +48,7 @@
 
   - name: update insights data
     ansible.builtin.command: insights-client
+    ignore_errors: yes
 
   - name: install webconsole aka cockpit
     ansible.builtin.yum:
