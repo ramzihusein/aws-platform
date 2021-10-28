@@ -1,0 +1,54 @@
+---
+- name: Provision instance in AWS
+  hosts: localhost
+  gather_facts: false
+  vars:
+    security_group_id: sg-0252de2d3594fc0e0
+    ami_id: ami-09d6d9540936a68de
+    instance_size: m4.xlarge
+    instance_tags: {"Name":"mkb-platform-ec2-instance"}
+    vpc_id: vpc-094c7a2bae802020b
+    ssh_key_name: mkb-platform
+    region: us-east-2
+    subnet_id: subnet-fdbe8187
+
+
+  collections: 
+    - amazon.aws
+
+  tasks:
+  - name: Provision instance
+    amazon.aws.ec2:
+      region: "{{ region }}"
+      key_name: "{{ ssh_key_name }}"
+      group_id: "{{ security_group_id }}"
+      instance_type: "{{ instance_size }}"
+      instance_tags: "{{ instance_tags }}"
+      image: "{{ ami_id }}"
+      wait: yes
+      vpc_subnet_id: "{{ subnet_id }}"
+      assign_public_ip: yes
+    register: ec2_instance_facts
+
+  - name: show ec2_facts
+    debug:
+      var: ec2_instance_facts.instances[0].public_dns_name
+
+  - name: 
+    ansible.builtin.add_host:
+      name: "{{ ec2_instance_facts.instances[0].public_dns_name }}"
+      groups: NewInsightInstance
+
+#  - name: refresh aws inventory
+#    ansible.tower.tower_inventory_source_update:
+#      inventory: mkb-platform-aws-inventory
+#      inventory_source: mkb-platform-aws-source
+#      tower_username: "{{ tower_username }}"
+#      tower_password: "{{ tower_password }}"
+#      wait: yes
+
+  #- name: create NewInsightIntance group and assign to new hosts
+  #  ansible.tower.tower_group:
+  #    hosts: "{{ ec2_instance_facts.instance[0].public_dns_name }}"
+  #    inventory: mkb-platform-aws-inventory
+  #    name: NewInsightInstance
