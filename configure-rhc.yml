@@ -34,12 +34,12 @@
       name: rhc-worker-playbook
       state: present
 
-  - name: isntall red hat connector tool
+  - name: install red hat connector
     ansible.builtin.yum:
       name: rhc
       state: present
 
-  - name: establish Red Hat Connector
+  - name: run Red Hat Connector
     ansible.builtin.command: rhc connect -u {{ portal_username }} -p {{ portal_password }}
 
   - name: give insights time to finish setup after running RHC
@@ -61,7 +61,7 @@
       enabled: yes
       state: started
 
-  - name: add mbredeme username
+  - name: add {{ portal_username }} user
     ansible.builtin.user:
       name: "{{ portal_username }}"
       groups: wheel
