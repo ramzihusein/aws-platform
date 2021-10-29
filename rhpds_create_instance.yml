@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: false
   vars:
-    security_group_id: sg-0a934e3998893c0c5
+    security_group_id: sgr-092e798b61dc6fa90
     ami_id: ami-05711d402dca1d01f
     instance_size: m4.xlarge
     instance_tags: {"Name":"mkb-platform-ec2-insights-demo"}
