@@ -7,6 +7,9 @@
   - name: Disable rhui repositories
     ansible.builtin.shell: yum-config-manager --disable *rhui*
 
+  - name: wipe out subscription status from ansible.builtin.command
+    ansible.builtin.shell: subscription-manager clean
+
   - name: register system and attach smart management subscription
     community.general.redhat_subscription:
       state: present
