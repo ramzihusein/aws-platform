@@ -69,6 +69,10 @@
       name: cockpit
       state: latest
 
+  - name: give cockpit time to finish instsalling
+    ansible.builtin.wait_for: 
+      timeout: 15
+      
   - name: start cockpit socket
     ansible.builtin.service: 
       name: cockpit.socket
