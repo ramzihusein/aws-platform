@@ -27,7 +27,7 @@
       username: "{{ portal_username }}"
       password: "{{ portal_password }}"
       force_register: yes
-      pool_ids: 8a85f9a178a823b20178ccaf437d272c
+      pool_ids: 8a85f999790fad8401791ee5cac22f09
       # consider using activation key parameter instead (see examples in docs)
 
   - name: enable subscription manager
