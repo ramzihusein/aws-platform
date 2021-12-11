@@ -39,6 +39,11 @@
       name: "{{ ec2_instance_facts.instances[0].public_dns_name }}"
       groups: NewInsightInstance
 
+  - name:
+    ansible.builtin.set_stats:
+      data: 
+        target_hosts: "{{ ec2_instance_facts.instances[0].public_dns_name }}"
+
 #  - name: refresh aws inventory
 #    ansible.tower.tower_inventory_source_update:
 #      inventory: mkb-platform-aws-inventory
