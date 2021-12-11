@@ -3,14 +3,14 @@
   hosts: localhost
   gather_facts: false
   vars:
-    security_group_id: sg-0252de2d3594fc0e0
-    ami_id: ami-09d6d9540936a68de
+    security_group_id: sg-079ebd58a00104d74
+    ami_id: ami-05711d402dca1d01f
     instance_size: m4.xlarge
     instance_tags: {"Name":"mkb-platform-ec2-instance"}
-    vpc_id: vpc-094c7a2bae802020b
-    ssh_key_name: mkb-platform
+    vpc_id: vpc-0b41ab809d8ee56f6
+    ssh_key_name: aws-rhpds-20211028
     region: us-east-2
-    subnet_id: subnet-fdbe8187
+    subnet_id: subnet-0f2f38197f3ed1263
 
 
   collections: 
