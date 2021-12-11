@@ -5,5 +5,5 @@
   tasks:
 
   - name: Disable rhui repositories
-    debug:  
-      var: "{{ target_hosts }}"
+    ping:  
+      
