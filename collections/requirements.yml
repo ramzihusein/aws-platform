@@ -4,4 +4,5 @@ collections:
   - name: amazon.aws
   - name: ansible.tower
   - name: servicenow.servicenow
+  - name: servicenow.itsm
 #  - name: ansible.builtin
