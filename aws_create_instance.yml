@@ -32,6 +32,10 @@
         assign_public_ip: yes
     register: ec2_instance_facts
 
+  - name: give instance time to initialize
+    ansible.builtin.wait_for: 
+      timeout: 120
+
   - name: show ec2_facts
     debug:
       var: ec2_instance_facts
@@ -47,9 +51,7 @@
       data: 
         target_hosts: "{{ ec2_instance_facts.instances[0].public_dns_name }}"
 
-  - name: give instance time to initialize
-    ansible.builtin.wait_for: 
-      timeout: 120
+
 
 #  - name: refresh aws inventory
 #    ansible.tower.tower_inventory_source_update:
