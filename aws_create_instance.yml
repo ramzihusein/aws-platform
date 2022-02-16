@@ -62,13 +62,13 @@
 
   - name: 
     ansible.builtin.add_host:
-      name: "{{ ec2_instance_facts.instances[0].public_ip_address }}"
+      name: "{{ ec2_instance_facts.instances[0].private_dns_name }}"
       groups: NewInsightInstance
 
   - name:
     ansible.builtin.set_stats:
       data: 
-        target_hosts: "{{ ec2_instance_facts.instances[0].public_ip_address }}"
+        target_hosts: "{{ ec2_instance_facts.instances[0].private_dns_name }}"
 
   - name: give instance time to initialize
     ansible.builtin.wait_for: 
