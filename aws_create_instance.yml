@@ -26,6 +26,7 @@
       tags: "{{ instance_tags }}"
       image_id: "{{ ami_id }}"
       wait: yes
+      wait_timeout: 120
       vpc_subnet_id: "{{ subnet_id }}"
       network:
         assign_public_ip: yes
