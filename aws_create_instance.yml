@@ -6,7 +6,7 @@
     security_group_id: sg-079ebd58a00104d74
     ami_id: ami-05711d402dca1d01f
     instance_size: m4.xlarge
-    instance_tags: {"Name":"mkb-platform-ec2-instance"}
+    instance_tags: {'Name':'mkb-platform-ec2-instance'}
     vpc_id: vpc-0b41ab809d8ee56f6
     ssh_key_name: aws-rhpds-20211028
     region: us-east-2
