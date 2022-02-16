@@ -23,7 +23,7 @@
       key_name: "{{ ssh_key_name }}"
       group_id: "{{ security_group_id }}"
       instance_type: "{{ instance_size }}"
-      instance_tags: "{{ instance_tags }}"
+      tags: "{{ instance_tags }}"
       image: "{{ ami_id }}"
       wait: yes
       vpc_subnet_id: "{{ subnet_id }}"
