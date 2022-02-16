@@ -14,7 +14,7 @@
 
 
   collections: 
-    - amazon.aws
+    - amazon.ec2_instance
 
   tasks:
   - name: Provision instance
