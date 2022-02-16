@@ -20,21 +20,18 @@
   - name: Provision instance
     amazon.aws.ec2_instance:
       region: "{{ region }}"
+      state: "started"
       key_name: "{{ ssh_key_name }}"
       security_group: "{{ security_group_id }}"
       instance_type: "{{ instance_size }}"
       tags: "{{ instance_tags }}"
       image_id: "{{ ami_id }}"
       wait: true
-      wait_timeout: 120
+      #wait_timeout: 120
       vpc_subnet_id: "{{ subnet_id }}"
       network:
         assign_public_ip: yes
     register: ec2_instance_facts
-
-  - name: give instance time to initialize
-    ansible.builtin.wait_for: 
-      timeout: 120
 
   - name: show ec2_facts
     debug:
@@ -51,7 +48,9 @@
       data: 
         target_hosts: "{{ ec2_instance_facts.instances[0].public_dns_name }}"
 
-
+  - name: give instance time to initialize
+    ansible.builtin.wait_for: 
+      timeout: 120
 
 #  - name: refresh aws inventory
 #    ansible.tower.tower_inventory_source_update:
