@@ -21,13 +21,15 @@
     amazon.aws.ec2_instance:
       region: "{{ region }}"
       key_name: "{{ ssh_key_name }}"
-      group_id: "{{ security_group_id }}"
+      security_groups:
+        group_id: "{{ security_group_id }}"
       instance_type: "{{ instance_size }}"
       tags: "{{ instance_tags }}"
       image_id: "{{ ami_id }}"
       wait: yes
       vpc_subnet_id: "{{ subnet_id }}"
-      assign_public_ip: yes
+      network:
+        assign_public_ip: yes
     register: ec2_instance_facts
 
   - name: show ec2_facts
