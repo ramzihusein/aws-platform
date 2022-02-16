@@ -20,7 +20,7 @@
   - name: Provision instance
     amazon.aws.ec2_instance:
       region: "{{ region }}"
-      state: "started"
+      state: "running"
       key_name: "{{ ssh_key_name }}"
       security_group: "{{ security_group_id }}"
       instance_type: "{{ instance_size }}"
