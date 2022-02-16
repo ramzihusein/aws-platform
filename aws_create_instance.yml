@@ -14,11 +14,11 @@
 
 
   collections: 
-    - amazon.ec2_instance
+    - amazon.aws
 
   tasks:
   - name: Provision instance
-    amazon.aws.ec2:
+    amazon.aws.ec2_instance:
       region: "{{ region }}"
       key_name: "{{ ssh_key_name }}"
       group_id: "{{ security_group_id }}"
