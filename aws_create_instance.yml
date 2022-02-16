@@ -35,14 +35,14 @@
 
   - name: show ec2_facts
     debug:
-      var: (ec2_instance_facts | to_yaml )
+      var: (ec2_instance_facts | from_json )
       #var: ec2_instance_facts.instances[0].public_dns_name
 
   - name: 
     amazon.aws.ec2_instance_info:
       region: "{{ region }}"
       instance_ids:
-        - "{{ ec2_instance_facts.instance_ids | to_yaml}}"
+        - "{{ ec2_instance_facts.instance_ids | from_json }}"
     register: ec2_instance_facts_detailed
 
   - name: show ec2_facts
