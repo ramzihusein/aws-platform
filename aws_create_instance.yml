@@ -33,9 +33,15 @@
         assign_public_ip: yes
     register: ec2_instance_facts
 
+  - name: 
+    amazon.aws.ec2_instance_info:
+      instance_ids:
+        - ec2_instance_facts.instance_ids
+    register: ec2_instance_facts_detailed
+
   - name: show ec2_facts
     debug:
-      var: ec2_instance_facts
+      var: ec2_instance_facts_detailed
       #var: ec2_instance_facts.instances[0].public_dns_name
 
   - name: 
