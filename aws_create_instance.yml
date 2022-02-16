@@ -62,7 +62,7 @@
 
   - name: 
     ansible.builtin.add_host:
-      name: "{{ ec2_instance_facts.instances[0].public_dns_name }}"
+      name: "{{ ec2_instance_facts.instances[0].public_ip_address }}"
       groups: NewInsightInstance
 
   - name:
