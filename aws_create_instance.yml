@@ -24,7 +24,7 @@
       group_id: "{{ security_group_id }}"
       instance_type: "{{ instance_size }}"
       tags: "{{ instance_tags }}"
-      image: "{{ ami_id }}"
+      image_id: "{{ ami_id }}"
       wait: yes
       vpc_subnet_id: "{{ subnet_id }}"
       assign_public_ip: yes
