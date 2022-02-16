@@ -25,7 +25,7 @@
       instance_type: "{{ instance_size }}"
       tags: "{{ instance_tags }}"
       image_id: "{{ ami_id }}"
-      wait: yes
+      wait: true
       wait_timeout: 120
       vpc_subnet_id: "{{ subnet_id }}"
       network:
