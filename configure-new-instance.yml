@@ -9,6 +9,7 @@
 
   - name: unregister system from subscription manager
     ansible.builtin.command: subscription-manager unregister
+    ignore_errors: yes
 
   - name: clear our subscription manager meta information
     ansible.builtin.command: subscription-manager clean
