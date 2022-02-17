@@ -3,14 +3,7 @@
 plugin: aws_ec2
 regions:
   - us-east-1
-  - us-east-2
-filters:
-  # All instances with their `Environment` tag set to `dev`
-  tag:Environment:
-    - dev
-    - qa
-# Ignores 403 errors rather than failing
-strict_permissions: False
+
 # Note: I(hostnames) sets the inventory_hostname. To modify ansible_host without modifying
 # inventory_hostname use compose (see example below).
 hostnames:
@@ -47,7 +40,7 @@ keyed_groups:
   - key: tags['Role']
     prefix: foo
     parent_group: "project"
-    
+
 # Set individual variables with compose
 compose:
   # Use the private IP address to connect to the host
