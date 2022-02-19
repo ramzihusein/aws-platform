@@ -22,7 +22,7 @@
   - name: generate new UUID
     ansible.builtin.shell: _UUID=$(uuidgen)
 
-  - debug:  
+  - debug:  #created custom credential type RedHat Portal
       msg: "{{ lookup('env', 'PORTAL_USERNAME') }}"
 
   - name: register system and attach smart management subscription
@@ -58,7 +58,7 @@
       state: present
 
   - name: run Red Hat Connector
-    ansible.builtin.command: rhc connect -u {{ portal_username }} -p {{ portal_password }}
+    ansible.builtin.command: rhc connect -u {{ lookup('env', 'PORTAL_USERNAME') }} -p {{ lookup('env', 'PORTAL_PASSWORD') }}
 
   - name: give insights time to finish setup after running RHC
     ansible.builtin.wait_for: 
