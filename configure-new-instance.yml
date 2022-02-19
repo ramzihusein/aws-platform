@@ -83,10 +83,10 @@
       enabled: yes
       state: started
 
-  - name: add {{ portal_username }} user
+  - name: add {{ lookup('env', 'PORTAL_USERNAME') }} user
     ansible.builtin.user:
-      name: "{{ portal_username }}"
+      name: "{{ lookup('env', 'PORTAL_USERNAME') }}"
       groups: wheel
       append: yes
-      password: "{{ portal_password | password_hash('sha512') }}"
+      password: "{{ lookup('env', 'PORTAL_PASSWORD') | password_hash('sha512') }}"
       update_password: always
