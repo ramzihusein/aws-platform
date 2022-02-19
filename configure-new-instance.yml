@@ -22,11 +22,14 @@
   - name: generate new UUID
     ansible.builtin.shell: _UUID=$(uuidgen)
 
+  - debug:  
+      msg: "{{ lookup('env', 'PORTAL_USERNAME') }}"
+
   - name: register system and attach smart management subscription
     community.general.redhat_subscription:
       state: present
-      username: "{{ portal_username }}"
-      password: "{{ portal_password }}"
+      username: "{{ lookup('env', 'PORTAL_USERNAME') }}"
+      password: "{{ lookup('env', 'PORTAL_PASSWORD') }}"
       force_register: yes
       pool_ids: 8a85f999790fad8401791ee5cac22f09
       # consider using activation key parameter instead (see examples in docs)
