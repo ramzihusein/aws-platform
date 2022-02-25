@@ -1,0 +1,25 @@
+---
+- name: basic inventory report including packages and services
+  hosts: all
+  
+  tasks:  
+    - name: gather installed packages
+      package_facts:
+      register: r_packages
+
+    - name: gather service ec2_facts
+      service_facts: 
+      register: r_services
+
+    - name: show host facts 
+      debug:
+        var: ansible_facts
+
+    - name: show package facts
+      debug:  
+        var: r_packages
+
+    - name: show service facts
+      debug:
+        var: r_services
+        
