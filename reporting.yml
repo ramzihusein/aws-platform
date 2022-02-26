@@ -6,7 +6,6 @@
     - name: gather installed packages
       package_facts:
         manager: auto
-        strategy: all
 
     - name: gather service ec2_facts
       service_facts: 
