@@ -5,6 +5,9 @@
   tasks:  
     - name: gather installed packages
       package_facts:
+        manager: rpm
+        strategy: all
+
       register: r_packages
 
     - name: gather service ec2_facts
@@ -20,7 +23,7 @@
 
     - name: show package facts
       debug:  
-        var: r_packages
+        var: r_packages.packages
 
     - name: show service facts
       debug:
