@@ -7,7 +7,6 @@
       package_facts:
         manager: rpm
         strategy: all
-
       register: r_packages
 
     - name: gather service ec2_facts
@@ -23,7 +22,7 @@
 
     - name: show package facts
       debug:  
-        var: r_packages.packages
+        var: r_packages
 
     - name: show service facts
       debug:
