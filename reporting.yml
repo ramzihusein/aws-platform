@@ -30,3 +30,10 @@
       debug:  
         var: r_security_updates_verbose.stdout_lines
 
+    - name: gather facts another way
+      command: yum list installed
+      register: r_installed
+
+    - name: show yum list installed
+      debug:  
+        var: r_installed
