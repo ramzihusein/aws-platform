@@ -5,9 +5,8 @@
   tasks:  
     - name: gather installed packages
       package_facts:
-        manager: rpm
+        manager: auto
         strategy: all
-      register: r_packages
 
     - name: gather service ec2_facts
       service_facts: 
@@ -22,7 +21,7 @@
 
     - name: show package facts
       debug:  
-        var: r_packages
+        var: ansible_facts.packages
 
     - name: show service facts
       debug:
