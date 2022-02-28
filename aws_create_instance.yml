@@ -4,7 +4,10 @@
   gather_facts: false
   vars:
     security_group_id: sg-079ebd58a00104d74
-    ami_id: ami-05711d402dca1d01f
+    ami: 
+      - id: ami-05711d402dca1d01f
+        version: rhel-8.5
+      - 
     instance_size: m4.xlarge
     instance_tags: {'Name':'mkb-platform-ec2-instance'}
     vpc_id: vpc-0b41ab809d8ee56f6

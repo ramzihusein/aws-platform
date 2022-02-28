@@ -5,35 +5,26 @@
   tasks:  
     - name: gather installed packages
       package_facts:
-        manager: auto
 
     - name: gather service ec2_facts
       service_facts: 
-      register: r_services
 
     - name: gather available security updates (verbose)
       command: yum updateinfo info security
       register: r_security_updates_verbose
+
     - name: show host facts 
       debug:
         var: ansible_facts
 
-    - name: show package facts
+    - name: show package facts 
       debug:  
         var: ansible_facts.packages
 
-    - name: show service facts
+    - name: show service facts 
       debug:
         var: r_services
 
     - name: show sec updates w/ description
       debug:  
         var: r_security_updates_verbose.stdout_lines
-
-    - name: gather facts another way
-      command: yum list installed
-      register: r_installed
-
-    - name: show yum list installed
-      debug:  
-        var: r_installed
