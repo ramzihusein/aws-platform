@@ -12,7 +12,7 @@
       service: 
         name: httpd
         enabled: yes
-        started: yes
+        state: started
         
 - name: basic inventory report including packages and services
   hosts: all
