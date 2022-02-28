@@ -1,6 +1,6 @@
 ---
 - name: start web service
-  hosts: {{ web_server }}
+  hosts: "{{ web_server }}"
   become: yes
 
   tasks:  
