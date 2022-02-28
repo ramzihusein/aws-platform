@@ -46,7 +46,9 @@
       debug:  
         var: r_security_updates_verbose.stdout_lines
 
-    - name: run linux package and service report
-      include_role:
-        name:  build_report_linux
-        delegation: "{{ web_server }}"
+    - name: run report on {{ web_server }} 
+      block: 
+        - name: run linux package and service report
+          include_role:
+            name:  build_report_linux
+      delegate_to: {{ web_server }}
