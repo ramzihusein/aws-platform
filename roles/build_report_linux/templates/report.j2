@@ -84,10 +84,11 @@ collapsible: true
                 <p class="hostname"> 
                   <img class="router_image" src="server.png"> {{ hostvars[linux_host]['inventory_hostname'].split('.')[0] }}</p>
                 </div>
-(# {% if detailedreport == 'True' %} #}
+{# {% if detailedreport == 'True' %} #}
+test 
 {% include 'packages.j2' %}
 {% include 'services.j2' %}
-{% endif %}
+{# {% endif %} #}
 </td>
             <td>{{hostvars[linux_host]['ansible_pkg_mgr']|default("none")}}</td>
             <td>{{hostvars[linux_host]['ansible_os_family']|default("none")}}</td>
