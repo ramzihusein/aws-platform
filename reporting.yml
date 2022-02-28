@@ -1,7 +1,24 @@
 ---
+- name: start web service
+  hosts: {{ web_server }}
+  become: yes
+
+  tasks:  
+    - name: ensure httpd package is latest
+      yum:
+        name: httpd
+        state: latest
+    - name: esnure httpd service is enabled and started
+      service: 
+        name: httpd
+        enabled: yes
+        started: yes
+        
 - name: basic inventory report including packages and services
   hosts: all
-  
+  vars: 
+    file_path: /var/www/html
+    
   tasks:  
     - name: gather installed packages
       package_facts:
@@ -28,3 +45,8 @@
     - name: show sec updates w/ description
       debug:  
         var: r_security_updates_verbose.stdout_lines
+
+    - name: run linux package and service report
+      include_role:
+        name:  build_report_linux
+      delegate_to: {{ web_server }}
