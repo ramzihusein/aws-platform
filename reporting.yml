@@ -1,6 +1,6 @@
 ---
 - name: start web service
-  hosts: "{{ web_server }}"
+  hosts: ip-10-0-0-66.ec2.internal
   become: yes
 
   tasks:  
