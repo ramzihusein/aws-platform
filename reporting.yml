@@ -49,4 +49,4 @@
     - name: run linux package and service report
       include_role:
         name:  build_report_linux
-      delegate_to: {{ web_server }}
+      delegate_to: "{{ web_server }}"
