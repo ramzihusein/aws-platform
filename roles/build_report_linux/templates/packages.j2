@@ -16,11 +16,10 @@
     {% if hostvars[linux_host]['packages'] is defined %}
     {% for package in hostvars[linux_host].packages %}
     {% set package = hostvars[linux_host]['packages'][package] %}
-        <tr><td>{{package[0].name}}</td>
-             {#<td>{{package['name']}}</td> 
-            <td>{{package['source']}}</td>
-            <td>{{package['release']}}</td>
-            <td>{{package['version']}}</td>#}
+        <tr><td>{{package[0].name}}</td> 
+            <td>{{package[0]['source']}}</td>
+            <td>{{package[0]['release']}}</td>
+            <td>{{package[0]['version']}}</td>
         </tr> 
     {% endfor %}
     {% endif %}
