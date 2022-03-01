@@ -17,7 +17,7 @@
     test: packages is defined
     {% for package in hostvars[linux_host].packages %}
         raw package: {{ package }}
-    {% set package = hostvars[linux_host]['packages'][index] %}
+    {% set package = hostvars[linux_host]['packages'] %}
         set package: {{ package }}
         {# <tr>
             <td>{{package['name']}}</td>
