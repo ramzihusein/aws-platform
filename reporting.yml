@@ -27,16 +27,12 @@
       service_facts: 
 
     - name: gather available security updates (verbose)
-      command: yum updateinfo info security
-      register: r_security_updates_verbose
-
-    - name: show host facts 
-      debug:
-        var: ansible_facts
+      command: yum updateinfo list security
+      register: r_security_updates
 
     - name: show sec updates w/ description
       debug:  
-        var: r_security_updates_verbose.stdout_lines
+        var: r_security_updates.stdout_lines
 
     - name: run linux package and service report
       include_role:
