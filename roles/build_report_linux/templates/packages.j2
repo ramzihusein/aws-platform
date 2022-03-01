@@ -15,15 +15,13 @@
     <tbody>
     {% if hostvars[linux_host]['packages'] is defined %}
     test: packages is defined
-    {% index = 0 %}
     {% for package in hostvars[linux_host].packages %}
-    {# {% set package = hostvars[linux_host]['packages'][package] %} #}
-        <tr><td>{{package}}</td><td>package: {{ package[index]['name'] }}</td>
+    {% set package = hostvars[linux_host]['packages'][package] %}
+        <tr><td>{{package}}</td><td>package: {{ package['name'] }}</td>
              {#<td>{{package['name']}}</td> 
             <td>{{package['source']}}</td>
             <td>{{package['release']}}</td>
             <td>{{package['version']}}</td>#}
-            {% index = index + 1  %}
         </tr> 
     {% endfor %}
     {% endif %}
