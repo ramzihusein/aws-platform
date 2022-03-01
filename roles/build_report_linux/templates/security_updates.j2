@@ -13,7 +13,7 @@
     {% if hostvars[linux_host]['r_security_updates.stdout_lines[0]'] is defined %}
     {% set index = 0 %}
     {% for security_update in hostvars[linux_host]['r_security_updates.stdout_lines']|sort %}
-    {% set security_update = hostvars[linux_host]['r_security_updates.stdout_lines'][{{index}}] %}
+    {% set security_update = hostvars[linux_host]['r_security_updates.stdout_lines'][index] %}
         <tr>
             <td>{{ security_update }} </td>
         </tr>
