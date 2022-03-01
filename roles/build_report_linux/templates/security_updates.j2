@@ -1,7 +1,7 @@
 <!–– INTERNAL TABLE FOR SERVICES --!>
 <div id="accordion">
 <div class="ui-accordion ui-widget ui-helper-reset" role="tablist">
-<h3 class="ui-accordion-header ui-corner-top ui-state-default ui-accordion-icons ui-accordion-header-collapsed ui-corner-all" role="tab" id="ui-id-3" aria-controls="ui-id-4" aria-selected="false" aria-expanded="false" tabindex="0">Services Facts</h3>
+<h3 class="ui-accordion-header ui-corner-top ui-state-default ui-accordion-icons ui-accordion-header-collapsed ui-corner-all" role="tab" id="ui-id-3" aria-controls="ui-id-4" aria-selected="false" aria-expanded="false" tabindex="0">Security Updates</h3>
 <div class="net_content ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-4" aria-labelledby="ui-id-3" role="tabpanel" aria-hidden="true" style="display: none; height: 194px;">
 <table id="subtable" class="sortable">
     <thead>
@@ -13,6 +13,7 @@
     {% if hostvars[linux_host]['r_security_updates.stdout_lines[0]'] is defined %}
     {% set index = 0 %}
     {% for security_update in hostvars[linux_host]['r_security_updates.stdout_lines']|sort %}
+    Initial Seucirty Update value: {{security_update}}
     {% set security_update = hostvars[linux_host]['r_security_updates.stdout_lines'][index] %}
         <tr>
             <td>{{ security_update }} </td>
