@@ -11,10 +11,10 @@
     </thead>
     <tbody>
     Test 1: {{hostvars[linux_host]}}
-    Test 2: {{hostvars[linux_host].r_security_updates.stdout}}
+    Test 2: {#{{hostvars[linux_host].r_security_updates.stdout}}
 
     Test 3: {{ r_security_updates.stdout_lines }}
-    Test 4: {#{{ r_security_updates.stdout }} 
+    Test 4: {{ r_security_updates.stdout }} 
     Test 5: {{ r_security_updates.stdout_lines.split(",") }}
    {% set sec_updates_list = r_security_updates.stdout_lines.split(",") %}
     first text: {{ sec_updates_list }} #}
