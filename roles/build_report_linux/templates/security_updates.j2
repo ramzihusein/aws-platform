@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-    Test 1:  {{hostvars[linux_host].fqdn}}
+    Test 1:  {{hostvars[linux_host]['public_ip']}}
     Test 2: {{hostvars[linux_host]['r_security_updates.stdout']}}
     Test 3: {#{{ r_security_updates.stdout_lines }}
     Test 4: {{ r_security_updates.stdout }} 
