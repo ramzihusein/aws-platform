@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-    {% set sec_updates_list = r_security_updates.stdout_lines | list %}
+    {% set sec_updates_list = extract, r_security_updates.stdout_lines | list %}
     {{ sec_updates_list }}
     {% if hostvars[linux_host]['r_security_updates.stdout_lines[0]'] is defined %}
     {% set index = 0 %}
