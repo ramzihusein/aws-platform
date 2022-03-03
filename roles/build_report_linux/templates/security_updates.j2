@@ -10,13 +10,13 @@
         </tr>
     </thead>
     <tbody>
-    {{ r_security_updates.stdout_lines }}
+    {#{{ r_security_updates.stdout_lines }}
     {{ r_security_updates.stdout }}
-    {# {% set sec_updates_list = r_security_updates.stdout_lines.split(",") %}
+    {% set sec_updates_list = r_security_updates.stdout_lines.split(",") %}
     first text: {{ sec_updates_list }} #}
-    {% if hostvars[linux_host]['r_security_updates.stdout_lines[0]'] is defined %}
+    {% if hostvars[linux_host]['r_security_updates.stdout'] is defined %}
     {% set index = 0 %}
-    {% for security_update in hostvars[linux_host]['r_security_updates.stdout_lines'] %}
+    {% for security_update in hostvars[linux_host]['r_security_updates.stdout'] %}
     test inside loop
     {% set security_update = hostvars[linux_host]['r_security_updates.stdout_lines'][index] %}
         <tr>
