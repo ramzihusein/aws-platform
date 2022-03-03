@@ -10,12 +10,11 @@
         </tr>
     </thead>
     <tbody>
-    {% set sec_updates_list = r_security_updates.stdout_lines[1].split(",") %}
+    {% set sec_updates_list = r_security_updates.stdout_lines.split(",") %}
     first text: {{ sec_updates_list }}
     {% if hostvars[linux_host]['r_security_updates.stdout_lines[0]'] is defined %}
     {% set index = 0 %}
-    {% for security_update in hostvars[linux_host]['r_security_updates.stdout_lines']|sort %}
-    Initial Seucirty Update value: {{security_update}}
+    {% for security_update in hostvars[linux_host]['r_security_updates.stdout_lines'] %}
     {% set security_update = hostvars[linux_host]['r_security_updates.stdout_lines'][index] %}
         <tr>
             <td>{{ security_update }} </td>
