@@ -11,7 +11,10 @@
     </thead>
     <tbody>
     **a** {{ [linux_host] }}
-    **b** {{ [sec_update][0]['stdout_lines'] | split(",") | list }}
+    **b** {{ [sec_update][0]['stdout_lines'] }}
+    {% for sec_line in [sec_update][0]['stdout_lines'] %}
+    {{ sec_line }}
+    {% endfor %}
     {#
     {% if hostvars[linux_host]['r_security_updates'] is defined %}
     **b** {{hostvars[linux_host]['r_security_updates']}}
