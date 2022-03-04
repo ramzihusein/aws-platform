@@ -30,7 +30,7 @@
       command: yum updateinfo list security
       register: r_security_updates
 
-    - setfact:
+    - set_fact:
         sec_update: "{{ r_security_updates }}"
 
     - name: show sec updates w/ description
