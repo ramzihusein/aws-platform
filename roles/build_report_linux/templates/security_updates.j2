@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-    {% for sec_line in [sec_update][0][stdout_lines] %}
+    {% for sec_line in [sec_update][0]['stdout_lines'] %}
      <tr>
         <td>{{ sec_line }}</td></tr>
     {% endfor %}
