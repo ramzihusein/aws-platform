@@ -10,7 +10,8 @@
         </tr>
     </thead>
     <tbody>
-    **a** {{ hostvars[linux_host][sec_update]}}
+    **a** {{ [linux_host] }}
+    **b** {{ [sec_update] }}
     {#
     {% if hostvars[linux_host]['r_security_updates'] is defined %}
     **b** {{hostvars[linux_host]['r_security_updates']}}
