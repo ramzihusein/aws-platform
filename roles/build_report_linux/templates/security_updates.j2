@@ -10,7 +10,9 @@
         </tr>
     </thead>
     <tbody>
+    Test: Inside security_updates.j2
     {% if hostvars[linux_host][r_security_updates.stdout] is defined %}
+    Test: Inside Condition "hostvars[linux_host][r_security_updates.stdout] is defined"
         <tr>
             <td> {{hostvars[linux_host].r_security_updates.stdout}}</td>
         </tr>
