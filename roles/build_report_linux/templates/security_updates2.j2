@@ -16,7 +16,7 @@
     {% for security_updates in hostvars[linux_host].['r_security_updates'] %}
     **c** {{security_updates}}
     {% set security_updates = hostvars[linux_host]['r_security_updates'][package] %}
-        <tr><td>**d**{{ security_updates[0]['stdout'] }}</td>
+        <tr><td>**d**{{ security_updates['stdout'] }}</td>
         </tr> 
     {% endfor %}
     {% endif %}
