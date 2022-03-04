@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-    **a** {{ lookup('r_security_updates', hostvars[linux_host], wantlist=True)}}
+    **a** {{ hostvars[linux_host]['sec_update']}}
     {#
     {% if hostvars[linux_host]['r_security_updates'] is defined %}
     **b** {{hostvars[linux_host]['r_security_updates']}}
