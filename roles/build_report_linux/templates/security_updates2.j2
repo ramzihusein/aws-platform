@@ -10,18 +10,18 @@
         </tr>
     </thead>
     <tbody>
-    **a** {{hostvars[linux_host]['r_security_updates']}}
+    **a** {{ lookup('r_security_updates', hostvars[linux_host], wantlist=True)}}
+    {#
     {% if hostvars[linux_host]['r_security_updates'] is defined %}
     **b** {{hostvars[linux_host]['r_security_updates']}}
-    {#
     {% for security_updates in hostvars[linux_host].['r_security_updates'] %}
     **c** {{security_updates}}
     {% set security_updates = hostvars[linux_host]['r_security_updates'] %}
         <tr><td>**d**{{ security_updates['stdout'] }}</td>
         </tr> 
     {% endfor %}
-    #}
     {% endif %}
+    #}
     </tbody>
 </table>
 </div>
