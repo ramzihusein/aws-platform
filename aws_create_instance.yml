@@ -5,9 +5,10 @@
   vars:
     security_group_id: sg-079ebd58a00104d74
     ami: 
-      - id: ami-05711d402dca1d01f
+      - id: ami-06f1e6f8b3457ae7c
         version: rhel-8.5
-      - 
+      - id: ami-002cdac160d085b42
+        version: rhel-8.1
     instance_size: m4.xlarge
     instance_tags: {'Name':'mkb-platform-ec2-instance'}
     vpc_id: vpc-0b41ab809d8ee56f6
@@ -20,6 +21,11 @@
     - amazon.aws
 
   tasks:
+
+  - name: what version of rhel
+    debug:  
+      var: "{{ ami.version }}"
+      
   - name: Provision instance
     amazon.aws.ec2_instance:
       region: "{{ region }}"
