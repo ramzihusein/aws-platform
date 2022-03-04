@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-    {% for key in [linux_host] %}
+    {% for key in hostvars[linux_host] %}
     <tr><td>{{key}}</td></tr>
     {% endfor %}
     {% for sec_line in [sec_update][0]['stdout_lines'] %}
