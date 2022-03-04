@@ -15,7 +15,8 @@
     Test: Inside Condition "hostvars[linux_host][r_security_updates.stdout] is defined"
         <tr>
             <td> {{ linux_host }}</td>
-            <td> {{hostvars[linux_host]| split(",") | list }}</td>
+            <td> {{hostvars[linux_host]['r_security_updates'] }}</td>
+            <td> {{hostvars[linux_host]['r_security_updates']['stdout'] }}</td>
         </tr>
     {# endif #}
     </tbody>
