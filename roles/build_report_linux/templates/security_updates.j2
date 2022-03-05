@@ -13,11 +13,11 @@
     {% for key in hostvars[linux_host]['ansible_facts']['machine'] %}
     <tr>
         <td>{{key}}</td>
-        <td>
+        {# <td>
             {% for key2 in hostvars[linux_host]['ansible_facts'][key] %}
             {{key2}}<br>
             {% endfor %}
-        </td>
+        </td> #}
     </tr>
     {% endfor %}
     {% for sec_line in [sec_update][0]['stdout_lines'] %}
