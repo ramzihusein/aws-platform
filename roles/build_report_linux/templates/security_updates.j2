@@ -10,20 +10,17 @@
         </tr>
     </thead>
     <tbody>
-    {% for key in hostvars[linux_host]['ansible_facts'] %}
+    {% for key in {{ hostvars[linux_host]['r_security_updates']['stdout_lines'] }} %}
     <tr>
         <td>{{key}}</td>
-        {# <td>
-            {% for key2 in hostvars[linux_host]['ansible_facts'][key] %}
-            {{key2}}<br>
-            {% endfor %}
-        </td> #}
     </tr>
     {% endfor %}
+{#    
     {% for sec_line in [sec_update][0]['stdout_lines'] %}
      <tr>
         <td>{{ sec_line }}</td></tr>
-    {% endfor %}
+    {% endfor %} 
+#}
     </tbody>
 </table>
 </div>

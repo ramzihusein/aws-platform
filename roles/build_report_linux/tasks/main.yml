@@ -1,8 +1,8 @@
-#- name: create HTML report
-#  ansible.builtin.template:
-#    src: report.j2
-#    dest: "{{ file_path }}/linux.html"
-#  delegate_to: "{{ web_server }}"
+- name: create HTML report
+  ansible.builtin.template:
+    src: report.j2
+    dest: "{{ file_path }}/linux.html"
+  delegate_to: "{{ web_server }}"
 
 #- name: copy CSS over
 #  ansible.builtin.copy:
