@@ -25,3 +25,9 @@
 - name: display link to inventory report
   ansible.builtin.debug:
     msg: "Please go to http://{{ web_server }}/linux.html"
+
+- name: create text report
+  ansible.builtin.template:
+    src: text_report.j2
+    dest: "{{ file_path }}/linux.txt"
+  delegate_to: "{{ web_server }}"

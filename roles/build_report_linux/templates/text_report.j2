@@ -1,0 +1,11 @@
+Ansible Linux Automation Report
+
+Linux Device          Package Manager      Operating System   
+--------------------------------------------------------------------
+{% for linux_host in groups['all']|sort %}
+{{hostvars[linux_host]['ansible_pkg_mgr']|default("none")}}        {{hostvars[linux_host]['ansible_os_family']|default("none")}}     {{hostvars[linux_host]['ansible_distribution_version']|default("none")}}
+        Security Updates:
+        -----------------
+        {% include 'text_security_updates.j2' %}
+{% endfor %}
+
