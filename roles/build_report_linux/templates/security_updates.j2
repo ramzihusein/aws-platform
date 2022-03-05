@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-    {% for key in {{ hostvars[linux_host]['r_security_updates']['stdout_lines'] }} %}
+    {% for key in hostvars[linux_host]['r_security_updates']['stdout_lines'] %}
     <tr>
         <td>{{key}}</td>
     </tr>
