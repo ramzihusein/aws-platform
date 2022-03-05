@@ -1,4 +1,5 @@
-hostvars[linux_host]{#
+{{ hostvars[linux_host] }}
+{#
 {% for key in hostvars[linux_host]['ansible_facts'] %}
            {{key}}
 {% endfor %}
