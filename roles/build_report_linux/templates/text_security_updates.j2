@@ -1,7 +1,8 @@
+hostvars[linux_host]{#
 {% for key in hostvars[linux_host]['ansible_facts'] %}
-{{key}}
+           {{key}}
 {% endfor %}
 -------------------------------------
 {% for sec_line in [sec_update][0]['stdout_lines'] %}
 {{ sec_line }}
-{% endfor %}
+{% endfor %}#}
