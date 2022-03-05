@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-    {% for key in hostvars[linux_host]['ansible_facts']['machine'] %}
+    {% for key in hostvars[linux_host]['ansible_facts'] %}
     <tr>
         <td>{{key}}</td>
         {# <td>
