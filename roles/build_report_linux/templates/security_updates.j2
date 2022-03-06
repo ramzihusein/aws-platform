@@ -10,11 +10,13 @@
         </tr>
     </thead>
     <tbody>
+    {% if hostvars[linux_host]['r_security_updates'] is defined %}
     {% for key in hostvars[linux_host]['r_security_updates']['stdout_lines'] %}
     <tr>
         <td>{{key}}</td>
     </tr>
     {% endfor %}
+    {% endif %}
 {#    
     {% for sec_line in [sec_update][0]['stdout_lines'] %}
      <tr>
