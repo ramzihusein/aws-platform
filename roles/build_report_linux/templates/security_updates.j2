@@ -11,7 +11,7 @@
     </thead>
     <tbody>
     {% if hostvars[linux_host]['r_security_updates'] is defined %}
-    {{ hostvars[linux_host]['r_security_updates']['stdout_lines']|count }}
+    {{ hostvars[linux_host]['r_security_updates']['stdout_lines'] }}
     {#{% line_count = hostvars[linux_host]['r_security_updates']['stdout_lines']|count %}
     line count = {{ line_count }}
     {% index = 2 %} #}
