@@ -13,7 +13,7 @@
     {% set counter = 0 %}
     {% if hostvars[linux_host]['r_security_updates'] is defined %}
         {% set line_count = hostvars[linux_host]['r_security_updates']['stdout_lines']|length|int %}
-        {% for key in hostvars[linux_host]['r_security_updates']['stdout_lines'] %}{% counter = counter + 1 %} {{counter}}
+        {% for key in hostvars[linux_host]['r_security_updates']['stdout_lines'] %}{% set counter = counter + 1 %} {{counter}}
             {% if counter >= 1 %}{# removes miscelanious stdout lines from initial command #}
                 <tr>
                     <td>{{key}}</td>
