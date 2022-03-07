@@ -12,12 +12,12 @@
     <tbody>
     {% if hostvars[linux_host]['r_security_updates'] is defined %}
     {% set line_count = hostvars[linux_host]['r_security_updates']['stdout_lines']|length %}
-    {% set counter = 2 %} {{ counter }}
     {% for key in hostvars[linux_host]['r_security_updates']['stdout_lines'] %}
+    {% if counter > 1 %}{# removes miscelanious stdout lines from initial command #}
     <tr>
-        <td>{#Line {{ index }}: #}{{key}}</td>
+        <td>{{key}}</td>
     </tr>
-    {# index = index + 1 #}
+    {% set counter = counter + 1 %}
     {% endfor %}
     {% endif %}
     </tbody>
