@@ -11,16 +11,17 @@
     </thead>
     <tbody>
     {% if hostvars[linux_host]['r_security_updates'] is defined %}
-    {% set line_count = hostvars[linux_host]['r_security_updates']['stdout_lines']|length|int %}
-    {% set counter = 0 %}
-    {% for key in hostvars[linux_host]['r_security_updates']['stdout_lines'] %}
-    {% if counter > 1 %}{# removes miscelanious stdout lines from initial command #}
-    <tr>
-        <td>{{key}}</td>
-    </tr>
-    {% endif %}    
-    {% set counter = counter + 1 %}
-    {% endfor %}
+        {% set line_count = hostvars[linux_host]['r_security_updates']['stdout_lines']|length|int %}
+        {% set counter = 0 %}
+        {% for key in hostvars[linux_host]['r_security_updates']['stdout_lines'] %}
+            {% if counter > 1 %}{# removes miscelanious stdout lines from initial command #}
+                <tr>
+                    <td>{{key}}</td>
+                </tr>
+            {% endif %}    
+            {% set counter = counter + 1 %}
+        {% endfor %}
+    {% endif %}
     </tbody>
 </table>
 </div>
