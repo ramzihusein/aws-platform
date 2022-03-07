@@ -10,17 +10,17 @@
         </tr>
     </thead>
     <tbody>
-    {% set counter = 0 | int %}
+    {# set counter = 0 | int #}
     {% if hostvars[linux_host]['r_security_updates'] is defined %}
-        {% set line_count = hostvars[linux_host]['r_security_updates']['stdout_lines']|length|int %}
+        {# set line_count = hostvars[linux_host]['r_security_updates']['stdout_lines']|length|int #}
         {% for key in hostvars[linux_host]['r_security_updates']['stdout_lines'] %} 
-            {{counter}} <br>
+            {#counter <br>#}
             {% if loop.index >= 2 %}{# removes miscelanious stdout lines from initial command #}
                 <tr>
                     <td>{{key}}</td>
                 </tr>
             {% endif %}    
-            {% set counter.value = counter.value + 1 %}
+            {# set counter.value = counter.value + 1 #}
         {% endfor %}
     {% endif %}
     </tbody>
