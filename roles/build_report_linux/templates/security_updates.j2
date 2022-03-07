@@ -21,7 +21,7 @@
                 </tr>
             {% endif %}    
             {% set counter = (counter | int) + 1 %}
-            {% line_count = line_count - 1 %}
+            {% set line_count = line_count - 1 %}
         {% endfor %}
     {% endif %}
     </tbody>
