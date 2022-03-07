@@ -1,8 +1,0 @@
-{% if hostvars[linux_host]['r_security_updates'] is defined %}
-{{ hostvars[linux_host]['r_security_updates']['stdout_lines'] | to_nice_yaml }}
-{#
-{% for key in hostvars[linux_host]['ansible_facts'] %}
-           {{key}}
-{% endfor %}
-{% endif %}
--------------------------------------

@@ -89,12 +89,11 @@ collapsible: true
             <td>{{hostvars[linux_host]['ansible_distribution_version']|default("none")}}</td>
             <td>{{hostvars[linux_host]['ansible_kernel']|default("none")}}</td>
         </tr>
-        {# {% if detailedreport == 'True' %} #}
-  
+        {# {% if detailedreport == 'True' %} #}  
         <tr> 
-            {#<td></td>
+            <td><strong>Detailed Reports:</strong></td>
             <td>{% include 'packages.j2' %}</td>
-            <td>{% include 'services.j2' %}</td>#}
+            <td>{% include 'services.j2' %}</td>
             <td>{% include 'security_updates.j2' %}</td>
             <td></td>
 {# {% endif %} #}

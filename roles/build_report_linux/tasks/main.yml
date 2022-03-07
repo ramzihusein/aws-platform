@@ -4,30 +4,24 @@
     dest: "{{ file_path }}/linux.html"
   delegate_to: "{{ web_server }}"
 
-#- name: copy CSS over
-#  ansible.builtin.copy:
-#    src: "css"
-#    dest: "{{ file_path }}"
-#    directory_mode: true
-#  delegate_to: "{{ web_server }}"
+- name: copy CSS over
+  ansible.builtin.copy:
+    src: "css"
+    dest: "{{ file_path }}"
+    directory_mode: true
+  delegate_to: "{{ web_server }}"
 
-#- name: copy logos over
-#  ansible.builtin.copy:
-#    src: "{{ item }}" 
-#    dest: "{{ file_path }}"
-#    directory_mode: true
-#  loop:
-#    - "webpage_logo.png"
-#    - "redhat-ansible-logo.svg"
-#    - "server.png"
-#  delegate_to: "{{ web_server }}"
+- name: copy logos over
+  ansible.builtin.copy:
+    src: "{{ item }}" 
+    dest: "{{ file_path }}"
+    directory_mode: true
+  loop:
+    - "webpage_logo.png"
+    - "redhat-ansible-logo.svg"
+    - "server.png"
+  delegate_to: "{{ web_server }}"
 
-#- name: display link to inventory report
-#  ansible.builtin.debug:
-#    msg: "Please go to http://{{ web_server }}/linux.html"
-
-#- name: create text report
-#  ansible.builtin.template:
-#    src: text_report.j2
-#    dest: "{{ file_path }}/linux.txt"
-#  delegate_to: "{{ web_server }}"
+- name: display link to inventory report
+  ansible.builtin.debug:
+    msg: "Please go to http://{{ web_server }}/linux.html"

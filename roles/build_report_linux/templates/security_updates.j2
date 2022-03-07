@@ -11,18 +11,16 @@
     </thead>
     <tbody>
     {% if hostvars[linux_host]['r_security_updates'] is defined %}
+    {% line_count = hostvars[linux_host]['r_security_updates']['stdout_lines'] | length %}
+    line count = {{ line_count }}
+    {% sent index = 2 %}
     {% for key in hostvars[linux_host]['r_security_updates']['stdout_lines'] %}
     <tr>
-        <td>{{key}}</td>
+        <td>Line {{ index }}: {{key}}</td>
     </tr>
+    {% index = index + 1 %}
     {% endfor %}
     {% endif %}
-{#    
-    {% for sec_line in [sec_update][0]['stdout_lines'] %}
-     <tr>
-        <td>{{ sec_line }}</td></tr>
-    {% endfor %} 
-#}
     </tbody>
 </table>
 </div>
