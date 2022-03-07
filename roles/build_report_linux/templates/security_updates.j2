@@ -17,7 +17,7 @@
     {% index = 2 %} #}
     {% for key in hostvars[linux_host]['r_security_updates']['stdout_lines'] %}
     <tr>
-        <td>Line {{ index }}: {{key}}</td>
+        <td>{#Line {{ index }}: #}{{key}}</td>
     </tr>
     {% index = index + 1 %}
     {% endfor %}
