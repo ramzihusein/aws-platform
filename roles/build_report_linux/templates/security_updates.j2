@@ -20,7 +20,7 @@
                     <td>{{key}}</td>
                 </tr>
             {% endif %}    
-            {% set counter = (counter | int) + 1 %}
+            {% set counter.value = counter.value + 1 %}
             {% line_count-- %}
         {% endfor %}
     {% endif %}
