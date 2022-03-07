@@ -14,7 +14,7 @@
     {{ hostvars[linux_host]['r_security_updates']['stdout_lines']|count }}
     {#{% line_count = hostvars[linux_host]['r_security_updates']['stdout_lines']|count %}
     line count = {{ line_count }} #}
-    {% set index = 2 %}
+    {% index = 2 %}
     {% for key in hostvars[linux_host]['r_security_updates']['stdout_lines'] %}
     <tr>
         <td>Line {{ index }}: {{key}}</td>
