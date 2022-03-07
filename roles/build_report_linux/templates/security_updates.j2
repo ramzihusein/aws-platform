@@ -15,13 +15,13 @@
         {% set line_count = hostvars[linux_host]['r_security_updates']['stdout_lines']|length|int %}
         {% for key in hostvars[linux_host]['r_security_updates']['stdout_lines'] %} 
             {{counter}} {{ line_count }}<br>
-            {% if counter >= 2 %}{# removes miscelanious stdout lines from initial command #}
+            {% if loop.index >= 2 %}{# removes miscelanious stdout lines from initial command #}
                 <tr>
                     <td>{{key}}</td>
                 </tr>
             {% endif %}    
             {% set counter = (counter | int) + 1 %}
-            {% set line_count = line_count - 1 %}
+            {% line_count-- %}
         {% endfor %}
     {% endif %}
     </tbody>
