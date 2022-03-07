@@ -11,9 +11,10 @@
     </thead>
     <tbody>
     {% if hostvars[linux_host]['r_security_updates'] is defined %}
-    {% line_count = hostvars[linux_host]['r_security_updates']['stdout_lines']|count %}
-    line count = {{ line_count }}
-    {% sent index = 2 %}
+    {{ hostvars[linux_host]['r_security_updates']['stdout_lines']|count }}
+    {#{% line_count = hostvars[linux_host]['r_security_updates']['stdout_lines']|count %}
+    line count = {{ line_count }} #}
+    {% set index = 2 %}
     {% for key in hostvars[linux_host]['r_security_updates']['stdout_lines'] %}
     <tr>
         <td>Line {{ index }}: {{key}}</td>
