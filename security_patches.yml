@@ -1,0 +1,11 @@
+---
+name: apply only security updates
+hosts: all
+
+tasks:
+  - name: patch security
+    yum:  
+      name: '*'
+      security: yes
+      state: latest
+    when: ansible_distribution_version == "8.4"
