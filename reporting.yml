@@ -28,8 +28,12 @@
       service_facts: 
 
     - name: gather available security updates (verbose)
-      command: yum updateinfo list security
+      shell: yum updateinfo list security | grep -ie rhsa
       register: r_security_updates
+
+#    - name: gather available security updates (verbose)
+#      command: yum updateinfo list security
+#      register: r_security_updates
 
     - name: show sec updates w/ description
       debug:  
