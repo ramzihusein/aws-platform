@@ -11,11 +11,17 @@
     </thead>
     <tbody>
     {% if hostvars[linux_host]['r_security_updates'] is defined %}
-        {% for key in hostvars[linux_host]['r_security_updates']['stdout_lines'] %} 
+        {% if hostvars[linux_host]['r_security_updates']['rc'] == 1 %}
+                <tr>
+                    <td>NO RHSAs FOUND</td>
+                </tr>     
+        {% else %}      
+            {% for key in hostvars[linux_host]['r_security_updates']['stdout_lines'] %} 
                 <tr>
                     <td>{{key}}</td>
                 </tr>   
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
     {% endif %}
     </tbody>
 </table>
