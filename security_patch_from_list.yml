@@ -1,0 +1,9 @@
+---
+- name: apply specific Red Hat Security Advisory updates
+  hosts: all
+
+  tasks:
+    - name: patch specific RHSA from a list
+      command: yum update --advisory={{ item }}
+      loop: "{{rhsa_patch_list}}"
+      when: ansible_distribution_version == "8.4"
