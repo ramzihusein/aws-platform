@@ -4,6 +4,11 @@
 
   tasks:
     - name: patch specific RHSA from a list
-      command: yum update --advisory={{ item }}
+      command: yum -y update --advisory={{ item }}
       loop: "{{rhsa_patch_list}}"
       when: ansible_distribution_version == "8.4"
+      notify: reboot_server
+
+  handlers:
+    - name: reboot_server
+      reboot:
