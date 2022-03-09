@@ -27,7 +27,7 @@
     - name: gather services data
       service_facts: 
 
-    - name: gather available security updates (verbose)
+    - name: gather available security updates 
       shell: yum updateinfo list security | grep -ie rhsa
       register: r_security_updates
 
