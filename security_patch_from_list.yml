@@ -12,3 +12,10 @@
   handlers:
     - name: reboot_server
       reboot:
+
+- name: run insights client after reboot
+  hosts: all
+  tasks:  
+    - name: update insights data
+      ansible.builtin.command: insights-client
+      ignore_errors: yes
