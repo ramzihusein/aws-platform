@@ -3,7 +3,7 @@
   hosts: all
 
   tasks:
-    - name: patch security
+    - name: patch security updates only
       yum:  
         name: '*'
         security: yes
