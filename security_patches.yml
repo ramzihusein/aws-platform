@@ -16,3 +16,4 @@
     - name: update insights data
       ansible.builtin.command: insights-client
       ignore_errors: yes
+      
