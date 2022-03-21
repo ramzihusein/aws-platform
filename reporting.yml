@@ -1,19 +1,19 @@
 ---
-#- name: start web service
-#  hosts: ip-10-0-0-66.ec2.internal
-#  become: yes
+- name: start web service
+  hosts: ip-10-0-0-66.ec2.internal
+  become: yes
 
-#  tasks:  
-#    - name: ensure httpd package is latest
-#      yum:
-#        name: httpd
-#        state: latest
-#    - name: esnure httpd service is enabled and started
-#      service: 
-#        name: httpd
-#        enabled: yes
-#        state: started
-#        
+  tasks:  
+    - name: ensure httpd package is latest
+      yum:
+        name: httpd
+        state: latest
+    - name: esnure httpd service is enabled and started
+      service: 
+        name: httpd
+        enabled: yes
+        state: started
+        
 - name: basic inventory report including packages and services
   hosts: all
   ignore_unreachable: yes
