@@ -69,7 +69,7 @@
   - name:
     ansible.builtin.set_stats:
       data: 
-        target_hosts: "{{ ec2_instance_facts.instances[0].private_dns_name }}"
+        target_hosts: "{{ ec2_instance_facts.instances[0].public_dns_name }}"
 
   - name:
     ansible.builtin.set_stats:
