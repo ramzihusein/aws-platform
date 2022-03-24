@@ -4,6 +4,10 @@
 
   tasks:
 
+  - name: wf_ec2_instance_facts
+    debug:  
+      var: wf_ec2_instance_facts
+
   - name: Disable rhui repositories
     ansible.builtin.shell: yum-config-manager --disable *rhui*
 

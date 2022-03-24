@@ -71,20 +71,12 @@
       data: 
         target_hosts: "{{ ec2_instance_facts.instances[0].private_dns_name }}"
 
+  - name:
+    ansible.builtin.set_stats:
+      data: 
+        wf_ec2_instance_facts: "{{ ec2_instance_facts }}"
+
+
   - name: give instance time to initialize
     ansible.builtin.wait_for: 
       timeout: 120
-
-#  - name: refresh aws inventory
-#    ansible.tower.tower_inventory_source_update:
-#      inventory: mkb-platform-aws-inventory
-#      inventory_source: mkb-platform-aws-source
-#      tower_username: "{{ tower_username }}"
-#      tower_password: "{{ tower_password }}"
-#      wait: yes
-
-  #- name: create NewInsightIntance group and assign to new hosts
-  #  ansible.tower.tower_group:
-  #    hosts: "{{ ec2_instance_facts.instance[0].public_dns_name }}"
-  #    inventory: mkb-platform-aws-inventory
-  #    name: NewInsightInstance
