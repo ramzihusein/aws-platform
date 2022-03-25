@@ -33,6 +33,8 @@
       network:
         assign_public_ip: yes
       count: "{{ instance_count }}"
+      tags:
+        foo: bar
     register: ec2_instance_facts
 
   - name: show ec2_facts
