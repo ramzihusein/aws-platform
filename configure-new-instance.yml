@@ -24,11 +24,6 @@
   - name: clear our subscription manager meta information
     ansible.builtin.command: subscription-manager clean
 
-  - name: Remove snapshot UUID
-    ansible.builtin.file:
-      path: /etc/rhsm/facts/dmi_system_uuid.facts
-      state: absent
-
   - name: generate new UUID
     ansible.builtin.shell: _UUID=$(uuidgen)
 
@@ -41,7 +36,7 @@
       username: "{{ lookup('env', 'PORTAL_USERNAME') }}"
       password: "{{ lookup('env', 'PORTAL_PASSWORD') }}"
       force_register: yes
-      pool_ids: 8a85f999790fad8401791ee5cac22f09
+      pool_ids: 8a85f9a17a59ba91017a68297a754c30
       # consider using activation key parameter instead (see examples in docs)
 
   - name: enable subscription manager
