@@ -4,7 +4,7 @@
   gather_facts: false
   vars:
     security_group_id: sg-031e75082a43b04a2
-    ami_id:  ami-0b0af3577fe5e3532
+    ami_id:  ami-0635a8c4049019474
     instance_size: m4.xlarge
     vpc_id: vpc-0faf1b2b5ec0e9b04
     ssh_key_name: aws_lab
