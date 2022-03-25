@@ -10,6 +10,7 @@
     ssh_key_name: aws_lab
     region: us-east-1
     subnet_id: subnet-01cd1e4d9c6332eb5
+    instance_count: 1
 
 
   collections: 
@@ -31,6 +32,7 @@
       vpc_subnet_id: "{{ subnet_id }}"
       network:
         assign_public_ip: yes
+      count: "{{ instance_count }}"
     register: ec2_instance_facts
 
   - name: show ec2_facts
