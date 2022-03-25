@@ -24,7 +24,8 @@
       key_name: "{{ ssh_key_name }}"
       security_group: "{{ security_group_id }}"
       instance_type: "{{ instance_size }}"
-      image[id]: "{{ image_id }}"
+      image:
+        id: "{{ image_id }}"
       wait: true
       #wait_timeout: 120
       vpc_subnet_id: "{{ subnet_id }}"
