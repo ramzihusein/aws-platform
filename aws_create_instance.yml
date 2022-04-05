@@ -11,7 +11,7 @@
     region: us-east-1
     subnet_id: subnet-01cd1e4d9c6332eb5
     instance_count: 1
-    target_hosts: []
+    target_hosts: default([])
 
 
   collections: 
