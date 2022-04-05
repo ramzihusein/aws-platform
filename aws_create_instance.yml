@@ -11,7 +11,6 @@
     region: us-east-1
     subnet_id: subnet-01cd1e4d9c6332eb5
     instance_count: 1
-    target_hosts: default([])
 
 
   collections: 
@@ -72,8 +71,9 @@
 
   - name:
     ansible.builtin.set_stats:
+      per_host: yes
       data: 
-        target_hosts: "{{ target_hosts + ec2_instance_facts.instances[0].public_dns_name }}"
+        target_hosts: "{{ ec2_instance_facts.instances[0].public_dns_name }}"
 
   - name:
     ansible.builtin.set_stats:
