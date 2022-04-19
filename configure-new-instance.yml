@@ -8,14 +8,14 @@
     debug:  
       var: wf_ec2_instance_facts
 
-  - name: Disable rhui repositories
-    ansible.builtin.shell: yum-config-manager --disable *rhui*
+  #- name: Disable rhui repositories
+  #  ansible.builtin.shell: yum-config-manager --disable *rhui*
 
-  - name: prevent rhui repos from reinstating on reboot
-    lineinfile:
-      regexp: '^disable_system_repos'
-      line: 'disable_system_repos = 1'
-      path: /etc/yum/pluginconf.d/subscription-manager.conf
+  #- name: prevent rhui repos from reinstating on reboot
+  #  lineinfile:
+  #    regexp: '^disable_system_repos'
+  #    line: 'disable_system_repos = 1'
+  #    path: /etc/yum/pluginconf.d/subscription-manager.conf
 
   - name: unregister system from subscription manager
     ansible.builtin.command: subscription-manager unregister
@@ -44,7 +44,7 @@
 
   - name: Enable Ansible 2.9 rhsm repository in redehat.repo file
     community.general.rhsm_repository:
-      name: ansible-2.9-for-rhel-8-x86_64-rpms
+      name: ansible-2.11-for-rhel-8-x86_64-rpms
       state: enabled
 
   - name: install ansible Engine
