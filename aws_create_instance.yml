@@ -37,47 +37,37 @@
         foo: bar
     register: ec2_instance_facts
 
-  - name: show ec2_facts
+  #- name: 
+  #  amazon.aws.ec2_instance_info:
+  #    region: "{{ region }}"
+  #    instance_ids:
+  #      - "{{ ec2_instance_facts.instance_ids[0] }}"
+  #  register: ec2_instance_facts_detailed
+
+  - name: initialize target_hosts as an empty list
+    set_fact:
+      target_hosts: []
+  
+  - name: load target_hosts list with hosts to target for configuration
+    set_stats:
+      data:
+        target_hosts: "{{ target_hosts + [ item.public_dns_name ] }}"
+    loop: "{{ ec2_instance_facts.instances }}"
+    
+  - name: show running instances
     debug:
-      var: ec2_instance_facts 
-      #var: ec2_instance_facts.instances[0].public_dns_name
+      var: item.public_dns_name
+    loop: "{{ ec2_instance_facts.instances }}"
 
-  - name: show ec2_facts
-    debug:
-      var: ec2_instance_facts | type_debug
-      #var: ec2_instance_facts.instances[0].public_dns_name
+  #- name:
+  #  ansible.builtin.set_stats:
+  #    data: 
+  #      target_hosts: "{{ ec2_instance_facts.instances[0].public_dns_name }}"
 
-  - name: show ec2_facts
-    debug:
-      var: ec2_instance_facts.instance_ids | type_debug
-      #var: ec2_instance_facts.instances[0].public_dns_name
-
-  - name: 
-    amazon.aws.ec2_instance_info:
-      region: "{{ region }}"
-      instance_ids:
-        - "{{ ec2_instance_facts.instance_ids[0] }}"
-    register: ec2_instance_facts_detailed
-
-  - name: show ec2_facts
-    debug:
-      var: ec2_instance_facts_detailed
-      #var: ec2_instance_facts.instances[0].public_dns_name
-
-  - name: 
-    ansible.builtin.add_host:
-      name: "{{ ec2_instance_facts.instances[0].private_dns_name }}"
-      groups: NewInsightInstance
-
-  - name:
-    ansible.builtin.set_stats:
-      data: 
-        target_hosts: "{{ ec2_instance_facts.instances[0].public_dns_name }}"
-
-  - name:
-    ansible.builtin.set_stats:
-      data: 
-        wf_ec2_instance_facts: "{{ ec2_instance_facts }}"
+  #- name:
+  #  ansible.builtin.set_stats:
+  #    data: 
+  #      wf_ec2_instance_facts: "{{ ec2_instance_facts }}"
 
 
   - name: give instance time to initialize
