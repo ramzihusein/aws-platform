@@ -2,74 +2,77 @@
 - name: Provision instance in AWS
   hosts: localhost
   gather_facts: false
-  vars:
-    security_group_id: sg-031e75082a43b04a2
-    image_id:  ami-0b0af3577fe5e3532
-    instance_size: m4.xlarge
-    vpc_id: vpc-0faf1b2b5ec0e9b04
-    ssh_key_name: aws_lab
-    region: us-east-1
-    subnet_id: subnet-01cd1e4d9c6332eb5
-    instance_count: 1
+# vars: defaults in group_vars/all/aws_vars.yml
 
-
-  collections: 
-    - amazon.aws
 
   tasks:
+    - name: Conditionally provision Windows ec2 instance in AWS
+      when: image_name == "windows2019"
+      amazon.aws.ec2_instance:
+        region: "{{ region }}"
+        state: started
+        key_name: "{{ ssh_key_name }}"
+        security_group: "{{ security_group_id }}"
+        instance_type: "{{ instance_size }}"
+        tags: 
+          Env: "{{ env_tag }}"
+          App: "{{ app_tag }}"
+          Name: "{{ name_tag }}"
+        image_id: "{{ ami_id[image_name] }}"
+        wait: true
+        vpc_subnet_id: "{{ subnet_id }}"
+        count: "{{ instance_count }}"
+        network:
+          assign_public_ip: yes
+        user_data: | 
+          <powershell>
+          $admin = [adsi]("WinNT://./administrator, user")
+          $admin.PSBase.Invoke("SetPassword", "myTempPassword123!")
+          Invoke-Expression ((New-Object System.Net.Webclient).DownloadString('https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1'))
+          </powershell>
+      register: ec2_instance_facts_win
 
-  - name: Provision instance
-    amazon.aws.ec2_instance:
-      region: "{{ region }}"
-      state: started
-      key_name: "{{ ssh_key_name }}"
-      security_group: "{{ security_group_id }}"
-      instance_type: "{{ instance_size }}"
-      image:
-        id: "{{ image_id }}"
-      wait: true
-      #wait_timeout: 120
-      vpc_subnet_id: "{{ subnet_id }}"
-      network:
-        assign_public_ip: yes
-      count: "{{ instance_count }}"
-      tags:
-        foo: bar
-    register: ec2_instance_facts
+    - name: Conditionally provision RHEL ec2 instance in AWS
+      when: image_name is match("rhel*")
+      amazon.aws.ec2_instance:
+        region: "{{ region }}"
+        state: started
+        key_name: "{{ ssh_key_name }}"
+        security_group: "{{ security_group_id }}"
+        instance_type: "{{ instance_size }}"
+        tags: 
+          Env: "{{ env_tag }}"
+          App: "{{ app_tag }}"
+          Name: "{{ name_tag }}"
+        image_id: "{{ ami_id[image_name] }}"
+        wait: true
+        vpc_subnet_id: "{{ subnet_id }}"
+        count: "{{ instance_count }}"
+        network:
+          assign_public_ip: yes
+      register: ec2_instance_facts_rhel      
 
-  #- name: 
-  #  amazon.aws.ec2_instance_info:
-  #    region: "{{ region }}"
-  #    instance_ids:
-  #      - "{{ ec2_instance_facts.instance_ids[0] }}"
-  #  register: ec2_instance_facts_detailed
+    - name: initialize target_hosts as an empty list/array
+      set_fact:
+        target_hosts: []
 
-  - name: initialize target_hosts as an empty list
-    set_fact:
-      target_hosts: []
-  
-  - name: load target_hosts list with hosts to target for configuration
-    set_stats:
-      data:
-        target_hosts: "{{ target_hosts + [ item.public_dns_name ] }}"
-    loop: "{{ ec2_instance_facts.instances }}"
-    
-  - name: show running instances
-    debug:
-      var: item.public_dns_name
-    loop: "{{ ec2_instance_facts.instances }}"
+    - name: load Windows instances into target_hosts list (used in future plays for config)
+      when: image_name == "windows2019" 
+      set_stats:
+        data: 
+          target_hosts: "{{ target_hosts + [ item.public_dns_name ] }}"
+      loop: "{{ ec2_instance_facts_win.instances }}"
 
-  #- name:
-  #  ansible.builtin.set_stats:
-  #    data: 
-  #      target_hosts: "{{ ec2_instance_facts.instances[0].public_dns_name }}"
+    - name: load RHEL instances into target_hosts list (used in future plays for config)
+      when: image_name is match("rhel*")
+      set_stats:
+        data: 
+          target_hosts: "{{ target_hosts + [ item.public_dns_name ] }}"
+      loop: "{{ ec2_instance_facts_rhel.instances }}"
 
-  #- name:
-  #  ansible.builtin.set_stats:
-  #    data: 
-  #      wf_ec2_instance_facts: "{{ ec2_instance_facts }}"
+    - name: give instance time to initialize before configuration
+      ansible.builtin.wait_for: 
+        timeout: 150
 
 
-  - name: give instance time to initialize
-    ansible.builtin.wait_for: 
-      timeout: 120
+
