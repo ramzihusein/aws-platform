@@ -1,0 +1,10 @@
+---
+- name: Configure AWS EC2 Image to communicate with Insights via RHC
+  hosts: "{{ target_hosts }}"
+  vars:
+    subscription: 
+      rhel_development_teams: 8a82c68d80862c730180ce58c1c8007b
+      rhel_smart_management_std: 8a82c68d80862c7301808ba1de7157fe
+
+  roles: 
+    - configure_base_instance
