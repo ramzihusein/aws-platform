@@ -4,7 +4,7 @@
   vars:
     subscription: 
       rhel_development_teams: 8a82c68d80862c730180ce58c1c8007b
-      rhel_smart_management_std: 8a85f9a17a59ba91017a68297a754c30
+      #rhel_smart_management_std: 8a85f9a17a59ba91017a68297a754c30
 
   roles: 
     - configure_base_instance
