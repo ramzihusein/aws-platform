@@ -6,7 +6,7 @@
     - name: patch specific RHSA from a list
       shell: yum -y update --advisory={{ item }}
       loop: "{{rhsa_patch_list}}"
-      when: ansible_distribution_version == "8.4"
+      #when: ansible_distribution_version == "8.4"
       notify: reboot_server
 
   handlers:
